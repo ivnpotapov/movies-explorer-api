@@ -100,7 +100,9 @@ module.exports.setUser = (req, res, next) => {
   )
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.code === 11000) {
+        next(new ErrorConflict('Email занят'));
+      } else if (err.name === 'CastError') {
         next(new ErrorBadRequest('Пользователь по указанному _id не найден'));
       } else if (err.name === 'ValidationError') {
         next(
