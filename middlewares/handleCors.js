@@ -1,9 +1,9 @@
 module.exports.handleCors = (req, res, next) => {
   const allowedCors = [
-    'https://iv-partner.nomoredomains.xyz',
-    'http://iv-partner.nomoredomains.xyz',
-    'https://localhost:3000',
-    'http://localhost:3000',
+    'https://ivmovie.nomoredomains.xyz/',
+    'http://ivmovie.nomoredomains.xyz/',
+    'https://localhost:3000/',
+    'http://localhost:3000/',
     'localhost:3000',
   ];
 
