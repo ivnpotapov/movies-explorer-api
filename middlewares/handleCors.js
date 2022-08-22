@@ -1,9 +1,9 @@
 module.exports.handleCors = (req, res, next) => {
   const allowedCors = [
-    'https://ivmovie.nomoredomains.xyz/',
-    'http://ivmovie.nomoredomains.xyz/',
-    'https://localhost:3000/',
-    'http://localhost:3000/',
+    'https://ivmovie.nomoredomains.xyz',
+    'http://ivmovie.nomoredomains.xyz',
+    'https://localhost:3000',
+    'http://localhost:3000',
     'localhost:3000',
   ];
 
@@ -12,7 +12,6 @@ module.exports.handleCors = (req, res, next) => {
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE'; // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
 
-  process.stdout.write(origin);
   if (allowedCors.includes(origin)) {
     // проверяем, что источник запроса есть среди разрешённых
     res.header('Access-Control-Allow-Origin', origin);
