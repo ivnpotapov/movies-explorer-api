@@ -40,27 +40,29 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
-  const {
-    name, email, password,
-  } = req.body;
+  const { name, email, password } = req.body;
 
   bcrypt
     .hash(password, SALT_ROUNDS)
-    .then((hash) => User.create({
-      name,
-      email,
-      password: hash,
-    }))
-    .then((user) => res.status(201).send({
-      name: user.name,
-      email: user.email,
-    }))
+    .then((hash) =>
+      User.create({
+        name,
+        email,
+        password: hash,
+      })
+    )
+    .then((user) =>
+      res.status(201).send({
+        name: user.name,
+        email: user.email,
+      })
+    )
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(
           new ErrorBadRequest(
-            'Переданы некорректные данные при создании пользователя',
-          ),
+            'Переданы некорректные данные при создании пользователя'
+          )
         );
       } else if (err.code === MONGO_DUPLICATE_ERROR_CODE) {
         next(new ErrorConflict('Email занят'));
@@ -96,7 +98,7 @@ module.exports.setUser = (req, res, next) => {
     {
       new: true, // обработчик then получит на вход обновлённую запись
       runValidators: true, // данные будут валидированы перед изменением
-    },
+    }
   )
     .then((user) => res.send(user))
     .catch((err) => {
@@ -107,8 +109,8 @@ module.exports.setUser = (req, res, next) => {
       } else if (err.name === 'ValidationError') {
         next(
           new ErrorBadRequest(
-            'Переданы некорректные данные при создании пользователя',
-          ),
+            'Переданы некорректные данные при создании пользователя'
+          )
         );
       } else {
         next(err);

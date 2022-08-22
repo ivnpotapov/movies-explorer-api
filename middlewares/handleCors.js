@@ -2,9 +2,8 @@ module.exports.handleCors = (req, res, next) => {
   const allowedCors = [
     'https://ivmovie.nomoredomains.xyz',
     'http://ivmovie.nomoredomains.xyz',
-    'https://localhost:3000',
     'http://localhost:3000',
-    'localhost:3000',
+    'http://localhost:3001',
   ];
 
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin

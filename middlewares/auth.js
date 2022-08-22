@@ -8,10 +8,9 @@ module.exports.handleAuth = (req, res, next) => {
     next(new ErrorUnauthorized('Необходима авторизация')); // 401
   }
 
-  const token = authorization.replace('Bearer ', '');
   let payload;
-
   try {
+    const token = authorization.replace('Bearer ', '');
     payload = checkToken(token);
   } catch (err) {
     next(new ErrorUnauthorized('Необходима авторизация')); // 401
