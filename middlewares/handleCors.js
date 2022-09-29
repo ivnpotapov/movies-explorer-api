@@ -4,6 +4,7 @@ module.exports.handleCors = (req, res, next) => {
     'http://ivmovie.nomoredomains.xyz',
     'http://localhost:3000',
     'http://localhost:3001',
+    'https://ivnpotapov.github.io',
   ];
 
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
